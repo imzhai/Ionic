@@ -7,7 +7,38 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let movie of movies">
-    {{movie | json}}
+
+  <!-- On affiche chaque film dans une card ionic
+  -> l'image
+  -> Le nombre de vote
+  -> le titre
+  -> la description
+
+  Pour l'image https://image.tmdb.org/t/p/w500/.................. .jpg
+  -->
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col  *ngFor="let movie of movies" size="12" size-lg="4">
+          <ion-card>
+            <img [src]="['https://image.tmdb.org/t/p/w500'+ movie.backdrop_path]" [alt]="movie.title">
+            <ion-card-header>
+              <ion-card-title>
+                {{movie.title}}
+              </ion-card-title>
+              <ion-card-subtitle>
+                Nombre de vote : <span style="color: rgb(232, 235, 68)"> {{movie.vote_count}}</span> <br>
+                Note :  <span style="color: rgb(232, 235, 68)">{{movie.vote_average}} </span> 
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>  {{(movie.overview | slice:0:90)+'...'}} </p>
+             
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
   </div>
 </ion-content>
