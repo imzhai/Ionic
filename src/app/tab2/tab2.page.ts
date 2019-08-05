@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+movies: Object[] = [];
 
-  constructor() {}
+
+  constructor(private movieService: MovieService) {}
+
+
+  // Quand on arrive sur l'onglet, on va chercher les films sur l'API
+  ngOnInit() {
+    this.movieService.getPopularMovies().then(movies => this.movies = movies);
+  }
 
 }
