@@ -20,7 +20,7 @@
     <ion-grid>
       <ion-row>
         <ion-col  *ngFor="let movie of movies" size="12" size-lg="4">
-          <ion-card>
+          <ion-card (click)="navToMovie(movie.id)">
             <img [src]="['https://image.tmdb.org/t/p/w500'+ movie.backdrop_path]" [alt]="movie.title">
             <ion-card-header>
               <ion-card-title>
@@ -28,10 +28,11 @@
               </ion-card-title>
               <ion-card-subtitle>
                 Nombre de vote : <span style="color: rgb(232, 235, 68)"> {{movie.vote_count}}</span> <br>
-                Note :  <span style="color: rgb(232, 235, 68)">{{movie.vote_average}} </span> 
+                Note :  <span style="color: rgb(194, 196, 81)">{{movie.vote_average}} </span> 
               </ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
+              
               <p>  {{(movie.overview | slice:0:90)+'...'}} </p>
              
             </ion-card-content>
